@@ -38,7 +38,14 @@
       # linyinfeng.icalingua-plus-plus
     ]);
   };
-  boot = {
+
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
+  kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
+/*   boot = {
     supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
     bootspec.enable = true;
@@ -64,13 +71,13 @@
     ];
     consoleLogLevel = 0;
     initrd.verbose = false;
-  };
+  }; */
 
-  i18n.inputMethod = {
+/*   i18n.inputMethod = {
     enabled = "fcitx5";
     fcitx5.addons = with pkgs; [ fcitx5-rime fcitx5-chinese-addons fcitx5-table-extra fcitx5-pinyin-moegirl fcitx5-pinyin-zhwiki ];
   };
-
+ */
   environment = {
     persistence."/nix/persist" = {
       directories = [
